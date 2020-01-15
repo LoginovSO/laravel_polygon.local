@@ -26,6 +26,10 @@ php artisan migrate:refresh --seed
 php artisan make:controller RestTestController --resource
 ```
 
+#### Контроллеры прилоения
+```php
+php artisan make:controller TestController
+```
 
 ### Маршруты
 

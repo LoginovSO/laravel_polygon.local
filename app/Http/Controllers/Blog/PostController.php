@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
-class RestTestController extends Controller
+class PostController extends BaseController
 {
     /**
      * Display a listing of the resource.
-     * Выводит список
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-//        dd(123);
-//        return view('welcome');
+        $items = BlogPost::all();
+
+        return view('blog.posts.index', compact('items'));
     }
 
     /**
      * Show the form for creating a new resource.
-     * Создание сущность, и показываем форму
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +31,6 @@ class RestTestController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * Добовляем в БД новую сущность
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -43,7 +42,6 @@ class RestTestController extends Controller
 
     /**
      * Display the specified resource.
-     * Показать сущность по его id
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -55,7 +53,6 @@ class RestTestController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * Редактирование сущности
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -67,7 +64,6 @@ class RestTestController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * Обновить в бд
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -80,7 +76,6 @@ class RestTestController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * Удплить либо на всегда либо софт делит
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
