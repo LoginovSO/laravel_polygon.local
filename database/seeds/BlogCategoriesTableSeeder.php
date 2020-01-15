@@ -28,7 +28,7 @@ class BlogCategoriesTableSeeder extends Seeder
             $categories[] = [
                 'title' => $cName,
                 'slug' => Str::slug($cName),
-                'parent_id' => 0,
+                'parent_id' => $parentId,
             ];
         }
 
