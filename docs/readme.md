@@ -1,5 +1,4 @@
-#### Создание БД
-
+### Создание БД
 
 #### Создание модели и миграции
 ```php
@@ -17,5 +16,21 @@ php artisan make:seeder BlogCategoriesTableSeeder
 php artisan db:seed
 php artisan db:seed --class=UserTableSeeder
 php artisan migrate:refresh --seed
+```
+
+### Контроллеры
+
+
+#### Создание REST-Котроллера
+```php
+php artisan make:controller RestTestController --resource
+```
+
+
+### Маршруты
+
+#### Помсотреть маршруты
+```php
+php artisan route:list
 ```
 
