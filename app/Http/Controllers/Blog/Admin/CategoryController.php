@@ -65,7 +65,7 @@ class CategoryController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        dd(1);
+        dd(__METHOD__, $request->all(), $id);
     }
 
 }
