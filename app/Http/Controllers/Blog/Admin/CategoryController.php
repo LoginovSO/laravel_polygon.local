@@ -86,5 +86,4 @@ class CategoryController extends BaseController
                 ->withInput();
         }
     }
-
 }
