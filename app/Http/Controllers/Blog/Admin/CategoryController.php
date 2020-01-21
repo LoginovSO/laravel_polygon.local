@@ -27,7 +27,8 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-        dd(__METHOD__);
+        $categoryList = BlogCategory::all();
+        return view('blog.admin.categories.create', compact('categoryList'));
     }
 
     /**

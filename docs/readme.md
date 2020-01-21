@@ -38,3 +38,7 @@ php artisan make:controller TestController
 php artisan route:list
 ```
 
+###Запросы
+```php
+php artisan make:request BlogCategoryUpdateRequest
+```
