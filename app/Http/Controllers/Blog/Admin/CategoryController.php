@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog\Admin;
 
 use App\Http\Requests\BlogCategoryUpdateRequest;
+use App\Http\Requests\BlogCategoryCreateRequest;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
@@ -27,19 +28,23 @@ class CategoryController extends BaseController
      */
     public function create()
     {
+        $item = new BlogCategory();
         $categoryList = BlogCategory::all();
-        return view('blog.admin.categories.create', compact('categoryList'));
+        return view('blog.admin.categories.edit', compact('categoryList', 'item'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\BlogCategoryCreateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogCategoryCreateRequest $request)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $result = $item
+            ->fill($data)
+            ->save();
     }
 
     /**
