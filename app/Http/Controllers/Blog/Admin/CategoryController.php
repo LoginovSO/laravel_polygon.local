@@ -21,8 +21,7 @@ class CategoryController extends BaseController
     {
         parent::__construct();
 
-//        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
-        $this->blogCategoryRepository = new BlogCategoryRepository();
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
     }
 
     /**
@@ -87,16 +86,15 @@ class CategoryController extends BaseController
      * @param BlogCategoryRepository $categoryRepository
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, BlogCategoryRepository $categoryRepository)
+    public function edit($id)
     {
-        $item = $categoryRepository->getEdit($id);
+        $item = $this->blogCategoryRepository->getEdit($id);
 
         if(empty($item)) {
             abort(404);
         }
 
-
-        $categoryList = $categoryRepository->getForCombox();
+        $categoryList = $this->blogCategoryRepository->getForCombox();
 
         return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
@@ -111,16 +109,8 @@ class CategoryController extends BaseController
      */
     public function update(BlogCategoryUpdateRequest $request, $id)
     {
-//        $rules = [
-//            'title' => 'required|min:5|max:200',
-//            'slug' => 'max:200',
-//            'description' => 'string|max:500|min:3',
-//            'parent_id' => 'required|integer|exists:blog_categories,id',
-//        ];
-//
-//        $validatedData = $this->validate($request, $rules);
+        $item = $this->blogCategoryRepository->getEdit($id);
 
-        $item = BlogCategory::find($id);
         if(empty($item)) {
             return back()
                 ->withErrors(['msg' => "Запись id=[{$id}] не найдена"])

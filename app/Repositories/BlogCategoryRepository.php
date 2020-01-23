@@ -39,11 +39,9 @@ class BlogCategoryRepository extends CoreRepository
      */
     public function getForComBox()
     {
-        //return $this->startConditions()->all();
-
         $columns = implode(', ', [
             'id',
-            'CONTACT (id, ". ", title) AS id_title',
+            'CONCAT(id, ". ", title) AS id_title',
         ]);
 
 //        $result[] = $this->startConditions()->all();
@@ -54,12 +52,13 @@ class BlogCategoryRepository extends CoreRepository
 //            ->toBase()
 //            ->get();
 
-        $result[] = $this
+        $result = $this
             ->startConditions()
             ->selectRaw($columns)
             ->toBase()
             ->get();
 
+        //dd($result);
         return $result;
 
     }
