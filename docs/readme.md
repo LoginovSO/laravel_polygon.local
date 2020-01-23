@@ -42,3 +42,8 @@ php artisan route:list
 ```php
 php artisan make:request BlogCategoryUpdateRequest
 ```
+
+###Репозитории ( не работает )
+```php
+php artisan make:repository UserRepository
+```
