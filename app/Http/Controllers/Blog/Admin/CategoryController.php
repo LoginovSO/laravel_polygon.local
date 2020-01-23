@@ -21,7 +21,8 @@ class CategoryController extends BaseController
     {
         parent::__construct();
 
-        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+//        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+        $this->blogCategoryRepository = new BlogCategoryRepository();
     }
 
     /**

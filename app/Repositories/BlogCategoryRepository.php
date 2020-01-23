@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Collection;
 class BlogCategoryRepository extends CoreRepository
 {
 
+//    public function __construct()
+//    {
+//        dd(2);
+//    }
+
     /**
      * @return string
      */
@@ -54,6 +59,8 @@ class BlogCategoryRepository extends CoreRepository
             ->selectRaw($columns)
             ->toBase()
             ->get();
+
+        return $result;
 
     }
 
