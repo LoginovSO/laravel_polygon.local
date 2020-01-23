@@ -34,6 +34,42 @@ class BlogCategoryRepository extends CoreRepository
      */
     public function getForComBox()
     {
-        return $this->startConditions()->all();
+        //return $this->startConditions()->all();
+
+        $columns = implode(', ', [
+            'id',
+            'CONTACT (id, ". ", title) AS id_title',
+        ]);
+
+//        $result[] = $this->startConditions()->all();
+//        $result[] = $this
+//            ->startConditions()
+//            ->select('blog_categories.*',
+//                \DB::raw('CONTACT (id, ". " title) AS id_title'))
+//            ->toBase()
+//            ->get();
+
+        $result[] = $this
+            ->startConditions()
+            ->selectRaw($columns)
+            ->toBase()
+            ->get();
+
+    }
+
+    /**
+     * @param int | null $perPage
+     * @return mixed
+     */
+    public function getAllWithPaginate(int $perPage = null)
+    {
+        $columns = ['id', 'title', 'parent_id'];
+
+        $result = $this
+            ->startConditions()
+            ->select($columns)
+            ->paginate($perPage);
+
+        return $result;
     }
 }
