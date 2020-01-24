@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\BlogPost as Model;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class BlogPostRepository extends CoreRepository
 {
@@ -13,5 +14,24 @@ class BlogPostRepository extends CoreRepository
     protected function getModelClass()
     {
         return Model::class;
+    }
+
+    /**
+     * Получить список статей для вывовда в списке (Админка)
+     *
+     * @param int | null $perPage
+     * @return LengthAwarePaginator
+     */
+    public function getAllWithPaginate(int $perPage = 25) : LengthAwarePaginator
+    {
+        $columns = ['id', 'title', 'slug', 'id_published', 'published_at', 'user_id', 'category_id'];
+
+        $result = $this
+            ->startConditions()
+            ->select($columns)
+            ->orderBy('id', 'DESC')
+            ->paginate($perPage);
+        dd($result);
+        return $result;
     }
 }
