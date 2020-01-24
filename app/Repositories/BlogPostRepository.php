@@ -24,14 +24,14 @@ class BlogPostRepository extends CoreRepository
      */
     public function getAllWithPaginate(int $perPage = 25) : LengthAwarePaginator
     {
-        $columns = ['id', 'title', 'slug', 'id_published', 'published_at', 'user_id', 'category_id'];
+        $columns = ['id', 'title', 'slug', 'is_published', 'published_at', 'user_id', 'category_id'];
 
         $result = $this
             ->startConditions()
             ->select($columns)
             ->orderBy('id', 'DESC')
             ->paginate($perPage);
-        dd($result);
+        //dd($result);
         return $result;
     }
 }

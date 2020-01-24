@@ -28,8 +28,8 @@
                             </thead>
                             <tbody>
                                 @foreach( $paginator as $post)
-                                    @php/** @var \App\Models\BlogPost */ @endphp
-                                    <tr @if(!$post->is_published) style="background-color: #ccc; @endif">
+                                    @php /**@var \App\Models\BlogPost $post */ @endphp
+                                    <tr @if(!$post->is_published) style="background-color: #ccc"; @endif>
                                         <td>{{ $post->id }}</td>
                                         <td>{{ $post->user_id }}</td>
                                         <td>{{ $post->category_id }}</td>
