@@ -7,8 +7,17 @@ use \App\Http\Controllers\Blog\BaseController as GuestBaseController;
 
 abstract class BaseController extends GuestBaseController
 {
+
+    /**
+     * Базовый контроллер для всех контроллеров управления
+     * блогом в панели администрирования
+     *
+     * Должен быть родитлем всех контроллеров управления блогов
+     *
+     * BaseController constructor.
+     */
     public function __construct()
     {
-        //dd(1);
+        //Инциализация общих моментов для админки.
     }
 }
