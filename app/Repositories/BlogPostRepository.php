@@ -26,11 +26,26 @@ class BlogPostRepository extends CoreRepository
     {
         $columns = ['id', 'title', 'slug', 'is_published', 'published_at', 'user_id', 'category_id'];
 
-        $result = $this
-            ->startConditions()
-            ->select($columns)
+//        $result = $this
+//            ->startConditions()
+//            ->select($columns)
+//            ->orderBy('id', 'DESC')
+//            ->paginate($perPage);
+
+        $result = $this->startConditions()
+            ->select()
             ->orderBy('id', 'DESC')
+            ->with(['category', 'user'])
+            ->with([
+                'category' => function ($query) {
+                    $query->select(['id', 'title']);
+                },
+                'user:id,name'
+            ])
+            //->with(['category:id,title'])
             ->paginate($perPage);
+
+
         //dd($result);
         return $result;
     }
