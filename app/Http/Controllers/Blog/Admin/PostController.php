@@ -125,13 +125,15 @@ class PostController extends BaseController
         }
 
         $data = $request->all();
-        if(empty($data['slug'])) {
-            $data['slug'] = \Str::slug($data['title']);
-        }
 
-        if(empty($item->published_at) && $data['is_published']) {
-            $data['published_at'] = Carbon::now();
-        }
+        // Отправил в обсервер
+//        if(empty($data['slug'])) {
+//            $data['slug'] = \Str::slug($data['title']);
+//        }
+//
+//        if(empty($item->published_at) && $data['is_published']) {
+//            $data['published_at'] = Carbon::now();
+//        }
 
         $result = $item->update($data);
 
