@@ -7,6 +7,23 @@ use Carbon\Carbon;
 
 class BlogPostObserver
 {
+
+    /**
+     * Отработка перед созданием записи
+     *
+     * @param BlogPost $blogPost
+     */
+    public function creating(BlogPost $blogPost)
+    {
+        $this->setPublishedAt($blogPost);
+
+        $this->setSlug($blogPost);
+
+        $this->setHtml($blogPost);
+
+        $this->setUser($blogPost);
+    }
+
     /**
      * Handle the blog post "created" event.
      *
@@ -74,33 +91,6 @@ class BlogPostObserver
     }
 
     /**
-     * Если дата публикации не уставнолена и проихсодит установка флага - Опубликовано
-     * то устанвалем дату публикациина текущую
-     *
-     * @param BlogPost $blogPost
-     */
-    protected function setPublishedAt (BlogPost $blogPost)
-    {
-        if (empty($blogPost->is_published) && $blogPost->is_published) {
-            $blogPost->is_published = Carbon::now();
-        }
-    }
-
-    /**
-     * Установка slug
-     *
-     * @param BlogPost $blogPost
-     */
-    protected function setSlug(BlogPost $blogPost)
-    {
-        if (empty($blogPost->slug)) {
-            $blogPost->slug = \Str::slug($blogPost->title);
-        }
-    }
-
-
-
-    /**
      * Handle the blog post "deleted" event.
      *
      * @param  \App\BlogPost  $blogPost
@@ -132,4 +122,48 @@ class BlogPostObserver
     {
         //
     }
+
+
+
+    /**
+     * Если дата публикации не уставнолена и проихсодит установка флага - Опубликовано
+     * то устанвалем дату публикациина текущую
+     *
+     * @param BlogPost $blogPost
+     */
+    protected function setPublishedAt (BlogPost $blogPost)
+    {
+        if (empty($blogPost->is_published) && $blogPost->is_published) {
+            $blogPost->is_published = Carbon::now();
+        }
+    }
+
+    /**
+     * Установка slug
+     *
+     * @param BlogPost $blogPost
+     */
+    protected function setSlug(BlogPost $blogPost)
+    {
+        if (empty($blogPost->slug)) {
+            $blogPost->slug = \Str::slug($blogPost->title);
+        }
+    }
+
+    /**
+     * @param BlogPost $blogPost
+     */
+    protected function setUser(BlogPost $blogPost)
+    {
+
+    }
+
+    /**
+     * @param BlogPost $blogPost
+     */
+    protected function setHtml(BlogPost $blogPost)
+    {
+
+    }
+
 }
