@@ -123,8 +123,6 @@ class BlogPostObserver
         //
     }
 
-
-
     /**
      * Если дата публикации не уставнолена и проихсодит установка флага - Опубликовано
      * то устанвалем дату публикациина текущую
@@ -155,7 +153,7 @@ class BlogPostObserver
      */
     protected function setUser(BlogPost $blogPost)
     {
-
+        $blogPost->user_id = auth()->id() ?? BlogPost::UNKNOWN_USER;
     }
 
     /**
@@ -163,7 +161,10 @@ class BlogPostObserver
      */
     protected function setHtml(BlogPost $blogPost)
     {
-
+        if ($blogPost->isDirty('content_raw')) {
+            // TODO: Тут должен быть спец обработчик
+            $blogPost->content_html = $blogPost->content_raw;
+        }
     }
 
 }
