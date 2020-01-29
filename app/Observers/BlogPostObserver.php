@@ -65,6 +65,9 @@ class BlogPostObserver
 //        $test[] = $blogPost->getOriginal('is_published');
 //        dd($test);
 
+        //dd($blogPost->getAttribute('slug'));
+        //dd($blogPost->getOriginal('slug'));
+
         $this->setPublishedAt($blogPost);
 
         $this->setSlug($blogPost);
@@ -83,10 +86,15 @@ class BlogPostObserver
         }
     }
 
+    /**
+     * Установка slug
+     *
+     * @param BlogPost $blogPost
+     */
     protected function setSlug(BlogPost $blogPost)
     {
         if (empty($blogPost->slug)) {
-            $blogPost->slug = \Str::slug($blogPost->slug);
+            $blogPost->slug = \Str::slug($blogPost->title);
         }
     }
 
