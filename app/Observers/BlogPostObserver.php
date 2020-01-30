@@ -32,7 +32,7 @@ class BlogPostObserver
      */
     public function created(BlogPost $blogPost)
     {
-        dd(123);
+        //dd(123);
     }
 
     /**
