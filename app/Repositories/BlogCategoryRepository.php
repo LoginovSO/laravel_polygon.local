@@ -2,9 +2,16 @@
 
 namespace App\Repositories;
 
+use App\Models\BlogCategory;
 use App\Models\BlogCategory as Model;
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class BlogCategoryRepository
+ *
+ * @package App\Repositories
+ *
+ */
 class BlogCategoryRepository extends CoreRepository
 {
 
@@ -74,6 +81,9 @@ class BlogCategoryRepository extends CoreRepository
         $result = $this
             ->startConditions()
             ->select($columns)
+            ->with([
+                'parentCategory:id,title'
+            ])
             ->paginate($perPage);
 
         return $result;
