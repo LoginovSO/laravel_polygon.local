@@ -76,7 +76,8 @@ class PostController extends BaseController
     public function store(BlogPostCreateRequest $request)
     {
         $data = $request->input();
-        //dd($data);
+
+        //Создает объект и доболяет в бд
         $item = (new BlogPost())->create($data);
 
         if ($item) {
