@@ -60,19 +60,55 @@ class DiggingDeeperController extends Controller
 //        $result['map']['not_exists'] = $result['map']['all']->where('exists', '=', false);
 //        dd($result);
 
-//        // Базовая переменная измениться (трафнсформируеться))
-//        $collection->transform(function (array $item) {
-//            $newItem = new \stdClass();
-//            $newItem->item_id = $item['id'];
-//            $newItem->item_name = $item['title'];
-//            $newItem->exists = is_null($item['deleted_at']);
-//            $newItem->created_at = Carbon::parse($item['created_at']);
-//
-//            return $newItem;
-//        });
+        // Базовая переменная измениться (трафнсформируеться))
+        $collection->transform(function (array $item) {
+            $newItem = new \stdClass();
+            $newItem->item_id = $item['id'];
+            $newItem->item_name = $item['title'];
+            $newItem->exists = is_null($item['deleted_at']);
+            $newItem->created_at = Carbon::parse($item['created_at']);
+
+            return $newItem;
+        });
 //
 //        dd($collection);
+//        $newItem = new \stdClass();
+//        $newItem->id = 9999;
+//
+//        $newItem2 = new \stdClass();
+//        $newItem2->id = 8888;
+        //dd($newItem, $newItem2);
 
+        // Утсановить элемент в начало коллекии
+//        $collection->prepend($newItem);
+//        $collection->push($newItem2);
+//        dd($collection);
+
+//        $newItemFirst = $collection->prepend($newItem)->first();
+//        $newItemLast = $collection->push($newItem2)->last();
+//        $pulledItem = $collection->pull(1); // Забрать первый элемент (удлаиться из коллекции)
+//
+//        dd(compact('collection', 'newItemFirst', 'newItemLast', 'pulledItem'));
+
+
+        // Фильтрация. Хамена orWhere
+
+//        $filtered = $collection->filter(function ($item) {
+//            $byDay = $item->created_at->isFriday();
+//            $byDate = $item->created_at->day == 8;
+//
+//            $result = $byDay && $byDate;
+//
+//            return $result;
+//        });
+//
+//        dd($filtered);
+
+//         $sortedSimpleCollection = collect([5, 3, 1, 2, 4])->sort();
+//         $sortedAscCollection = $collection->sortBy('create_at');
+//         $sortedDescCollection = $collection->sortByDesc('item_id');
+//
+//        dd(compact('sortedSimpleCollection', 'sortedAscCollection', 'sortedDescCollection'));
 
     }
 }
