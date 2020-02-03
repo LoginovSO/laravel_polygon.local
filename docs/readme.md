@@ -1,3 +1,9 @@
+###Установка laravel
+```php
+composer create-project --prefer-dist laravel/laravel blog
+```
+
+
 ### Создание БД
 
 #### Создание модели и миграции
