@@ -56,3 +56,22 @@ php artisan make:repository UserRepository
 php artisan make:observer BlogPostObserver --model=Models\BlogPost
 php artisan make:observer BlogCategoryObserver --model=Models\BlogCategory
 ```
+
+
+
+#Jobs - Очереди
+
+Мигигарция  для таблиц очери
+```php
+php artisan queue:table
+```
+
+Миграция для таблиц где за фейленные очереди
+```php
+php artisan queue:failed-table
+```
+
+Создание джоба
+```php
+php artisan make:job BlogPostAfterCreate
+```
