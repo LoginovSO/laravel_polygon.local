@@ -75,3 +75,44 @@ php artisan queue:failed-table
 ```php
 php artisan make:job BlogPostAfterCreate
 ```
+
+#Jobs - Запуск очереди
+```php
+php artisan queue:work
+```
+Запускает процесс обработки очередеи как демона
+Все  изминения сделанные в коде после запуска приняты не будут
+То есть после апдейта кода потребуеться перезапуск команды
+
+```php
+php artisan queue:work --queue=queueName1,queueName2
+```
+Сначала выполняться задачи из очереди queueName1, затем queueName2
+
+```php
+php artisan queue:listen
+```
+// Запусек процесс обработки задач указанной очереди
+изминения сдлеанные в коде после запуска будут приняты
+Хуже по производительности в сравнений с queue:work
+
+```php
+php artisan queue:restart
+```
+// мягкий перезапуск демона queue:work после того как тот завершит выполняемую задачу
+
+
+```php
+php artisan queue:fieled
+```
+// Просмотор таблицы проваленных заач
+
+```php
+php artisan queue:retry all
+```
+// Возврат в очередь выполенния всех проваленных задач
+
+```php
+php artisan queue:retry 5
+```
+// Возврат проваленной задачи (id=5) очеред выполенения
